@@ -1,0 +1,14 @@
+{
+  "resourceName": "ehrdocs",
+  "policyUUID": "0b07820d",
+  "bucketName": "phcare532ee9d84f9e43788cc940bfbeb77d97",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}
