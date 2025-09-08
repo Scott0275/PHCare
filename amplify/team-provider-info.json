@@ -35,6 +35,10 @@
     "categories": {
       "auth": {
         "phcarec0336d73": {}
+      },
+      "storage": {
+        "ehrdocs": {},
+        "patients": {}
       }
     }
   }
