@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-phcare-dev-f40ec-authRole",
+      "UnauthRoleArn": "arn:aws:iam::040280606943:role/amplify-phcare-dev-f40ec-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::040280606943:role/amplify-phcare-dev-f40ec-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-phcare-dev-f40ec-deployment",
+      "UnauthRoleName": "amplify-phcare-dev-f40ec-unauthRole",
+      "StackName": "amplify-phcare-dev-f40ec",
+      "StackId": "arn:aws:cloudformation:us-east-2:040280606943:stack/amplify-phcare-dev-f40ec/7cdcdf70-8c69-11f0-b2ea-0612b2c1af77",
+      "AmplifyAppId": "d1t6xqfirrlcfd"
+    }
+  }
+}
