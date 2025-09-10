@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "auth": {
+      "phcareaba2983daba2983d": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    },
+    "storage": {
+      "patients": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ],
+      "ehrdocs": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

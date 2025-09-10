@@ -1,25 +1,4 @@
 {
-  "dev": {
-    "awscloudformation": {
-      "AuthRoleName": "amplify-phcare-dev-f40ec-authRole",
-      "UnauthRoleArn": "arn:aws:iam::040280606943:role/amplify-phcare-dev-f40ec-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::040280606943:role/amplify-phcare-dev-f40ec-authRole",
-      "Region": "us-east-2",
-      "DeploymentBucketName": "amplify-phcare-dev-f40ec-deployment",
-      "UnauthRoleName": "amplify-phcare-dev-f40ec-unauthRole",
-      "StackName": "amplify-phcare-dev-f40ec",
-      "StackId": "arn:aws:cloudformation:us-east-2:040280606943:stack/amplify-phcare-dev-f40ec/7cdcdf70-8c69-11f0-b2ea-0612b2c1af77",
-      "AmplifyAppId": "d1t6xqfirrlcfd"
-    },
-    "categories": {
-      "auth": {
-        "phcarec0336d73": {}
-      },
-      "storage": {
-        "patients": {}
-      }
-    }
-  },
   "test": {
     "awscloudformation": {
       "AuthRoleName": "amplify-phcare-test-d97de-authRole",
@@ -30,14 +9,25 @@
       "UnauthRoleName": "amplify-phcare-test-d97de-unauthRole",
       "StackName": "amplify-phcare-test-d97de",
       "StackId": "arn:aws:cloudformation:us-east-2:040280606943:stack/amplify-phcare-test-d97de/1d1c8360-8ce6-11f0-a4c6-02c815ab5f43",
-      "AmplifyAppId": "d1t6xqfirrlcfd"
+      "AmplifyAppId": "d1t6xqfirrlcfd",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-phcare-test-d97de-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
       "auth": {
-        "phcarec0336d73": {}
+        "phcareaba2983daba2983d": {},
+        "userPoolGroups": {}
+      },
+      "function": {
+        "patientsLambda": {
+          "deploymentBucketName": "amplify-phcare-test-d97de-deployment",
+          "s3Key": "amplify-builds/patientsLambda-5a3039542b7950724d45-build.zip"
+        }
       },
       "storage": {
         "ehrdocs": {},
+        "patients": {}
+      },
+      "api": {
         "patients": {}
       }
     }

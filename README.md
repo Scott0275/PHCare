@@ -1,103 +1,77 @@
-# PHCare
- Internal Hospital App with AWS AMPLIFY
-
-Perfect idea — a **README.md** will be the first thing people see in your repo, so let’s make it clear, professional, and also show your “build in public” journey.
-
-Here’s a draft tailored to your **Day 1 progress with Create React App + Amplify**:
-
----
-
 # 🚑 PHCare — Internal Hospital App (AWS Amplify Sprint)
 
-This is my journey building **PHCare**, an internal hospital app, as part of a **3-Day AWS Amplify Sprint**.
-The goal: explore modern cloud tooling, practice DevOps workflows, and ship a working prototype while documenting the process publicly.
+This is my journey building **PHCare**, an internal hospital app, as part of a **3-Day AWS Amplify Sprint**.  
+The goal: explore modern cloud tooling, practice DevOps workflows, and ship a working prototype while documenting the process publicly.  
 
 ---
 
 ## 📅 Project Sprint Plan
 
-**Day 1 — Foundations & Authentication ✅**
+**Day 1 — Foundations & Authentication ✅**  
+- Initialized Amplify backend (`amplify init`)  
+- Added authentication (`amplify add auth`)  
+- Created Cognito groups: **Doctor** (full access), **Staff** (limited access)  
+- Frontend login flow with Amplify UI components  
+- Verified login with test users  
 
-* Initialize Amplify backend (`amplify init`)
-* Add authentication (`amplify add auth`)
-* Create Cognito groups: **Doctor** (full access), **Staff** (limited access)
-* Frontend login flow with Amplify UI components
-* Verified login with test users
+**Day 2 — Data & Storage ✅**  
+- Added DynamoDB table `patients` with `PatientID` as partition key  
+- Added S3 bucket `ehrdocs` for patient documents  
+- Applied role-based permissions:
+  - Doctor → full CRUD on patients + docs  
+  - Staff → limited read/upload  
+- Deployed to **test environment** before syncing with dev  
+- Confirmed DynamoDB + S3 live in AWS Console  
 
-**Day 2 — Data & Storage Layer (coming up)**
-
-* DynamoDB for patients
-* S3 for document storage
-* React UI for patient records and file uploads
-
-**Day 3 — API, Chat & Demo (coming up)**
-
-* REST API via API Gateway + Lambda
-* Real-time doctor–staff chat with WebSockets
-* Search functionality
-* Amplify Publish for demo
-
----
-
-## 🚀 Day 1 Progress
-
-Today’s focus: **Foundations & Authentication**.
-
-1. **Amplify Init**
-
-```bash
-amplify init
-```
-
-2. **Add Authentication**
-
-```bash
-amplify add auth
-amplify push
-```
-
-3. **Created Cognito Groups**
-
-* Doctor → full CRUD access
-* Staff → limited read/upload access
-
-4. **Frontend Integration (Create React App)**
-   Added Amplify config in `src/index.js`:
-
-```javascript
-import { Amplify } from 'aws-amplify';
-import awsExports from './aws-exports';
-Amplify.configure(awsExports);
-```
-
-Wrapped `App.js` with Amplify Authenticator:
-
-```javascript
-import { withAuthenticator } from '@aws-amplify/ui-react';
-
-function App({ signOut, user }) {
-  return (
-    <div>
-      <h1>Welcome to PHCare 🚑</h1>
-      <p>Signed in as: {user.username}</p>
-      <button onClick={signOut}>Sign out</button>
-    </div>
-  );
-}
-
-export default withAuthenticator(App);
-```
-
-Result:
-✅ Doctor and Staff can now sign in at `http://localhost:3000/`.
+## 🏥 Day 3: Patient API Integration
+- Added **REST API** via Amplify → API Gateway + Lambda.  
+- Created endpoint `/patients` backed by **patientsLambda** function.  
+- Connected Lambda to DynamoDB for patient CRUD operations.  
+- Enforced role-based access:  
+  - Doctor → **CRUD**  
+  - Staff → **Read-only**  
+- Fixed frontend API mismatch (`patient-api` → `patients`).  
+- Successfully tested **Add Patient** flow from React frontend → API Gateway → Lambda → DynamoDB. 🎉  
 
 ---
 
-## 📖 Lessons Learned
+## 🔮 Next Steps
+- Test full CRUD (Read, Update, Delete) flows for patients.  
+- Add **WebSocket API** for doctor–staff chat.  
+- Connect frontend with **search functionality**.  
+- Deploy demo app to Amplify Hosting.  
+---
 
-* AWS Profiles must be configured properly (`aws configure --profile amplify-dev`)
-* Amplify + CRA integration is straightforward once `aws-exports.js` is wired in
-* Cognito groups are powerful for role-based access without extra code
+## 🚀 How to Run Locally
+
+1. Clone repo:
+   ```bash
+   git clone https://github.com/Scott0275/PHCare.git
+   cd PHCare
+````
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Start dev server:
+
+   ```bash
+   npm start
+   ```
+
+4. App runs at `http://localhost:3000/`
+
+---
+
+## 📖 Lessons So Far
+
+* AWS Profiles are key (`aws configure --profile amplify-dev`)
+* Amplify + Create React App integrate seamlessly with `aws-exports.js`
+* Cognito groups give role-based access without extra backend logic
+* **Data outlives code** → DynamoDB + S3 form the backbone of the app
 
 ---
 
@@ -105,7 +79,7 @@ Result:
 
 I’m documenting each day’s progress as blog-style posts and sharing on LinkedIn/X to keep myself accountable and help others learn.
 
-Stay tuned for **Day 2 — Data & Storage Layer**!
+Stay tuned for **Day 3 — APIs + real-time chat!**
 
 ---
 
@@ -113,4 +87,5 @@ Stay tuned for **Day 2 — Data & Storage Layer**!
 
 * [Amplify Docs](https://docs.amplify.aws/)
 * [Cognito Groups](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-user-groups.html)
-* [DevOps Journey Blog (coming soon)](#)
+* [DynamoDB Basics](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html)
+* [S3 Storage](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html)

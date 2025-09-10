@@ -1,14 +1,22 @@
 {
   "resourceName": "ehrdocs",
-  "policyUUID": "0b07820d",
-  "bucketName": "phcare532ee9d84f9e43788cc940bfbeb77d97",
+  "policyUUID": "1d99dc72",
+  "bucketName": "phcare0669131fd0d14dada8f334d079a30267",
   "storageAccess": "auth",
   "guestAccess": [],
   "authAccess": [
     "CREATE_AND_UPDATE",
-    "READ",
-    "DELETE"
+    "READ"
   ],
-  "triggerFunction": "NONE",
-  "groupAccess": {}
+  "groupAccess": {
+    "Doctor": [
+      "CREATE_AND_UPDATE",
+      "READ",
+      "DELETE"
+    ],
+    "Staff": [
+      "CREATE_AND_UPDATE",
+      "READ"
+    ]
+  }
 }

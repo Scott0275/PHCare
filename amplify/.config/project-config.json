@@ -1,18 +1,17 @@
 {
-  "whyContinueWithGen1": "Prefer not to answer",
+  "providers": [
+    "awscloudformation"
+  ],
   "projectName": "PHCare",
   "version": "3.1",
   "frontend": "javascript",
   "javascript": {
     "framework": "react",
     "config": {
-      "SourceDir": ",",
+      "SourceDir": "src",
       "DistributionDir": "build",
       "BuildCommand": "npm run build",
       "StartCommand": "npm start"
     }
-  },
-  "providers": [
-    "awscloudformation"
-  ]
+  }
 }
