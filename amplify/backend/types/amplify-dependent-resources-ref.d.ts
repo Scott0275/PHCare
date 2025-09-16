@@ -1,5 +1,9 @@
 export type AmplifyDependentResourcesAttributes = {
   "api": {
+    "chatapp": {
+      "GraphQLAPIEndpointOutput": "string",
+      "GraphQLAPIIdOutput": "string"
+    },
     "patients": {
       "ApiId": "string",
       "ApiName": "string",
@@ -31,6 +35,16 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "storage": {
+    "chatmessages": {
+      "Arn": "string",
+      "Name": "string",
+      "PartitionKeyName": "string",
+      "PartitionKeyType": "string",
+      "Region": "string",
+      "SortKeyName": "string",
+      "SortKeyType": "string",
+      "StreamArn": "string"
+    },
     "ehrdocs": {
       "BucketName": "string",
       "Region": "string"

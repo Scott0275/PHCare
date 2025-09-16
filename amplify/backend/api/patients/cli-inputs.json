@@ -5,18 +5,7 @@
       "name": "/patients",
       "lambdaFunction": "patientsLambda",
       "permissions": {
-        "groups": {
-          "Doctor": [
-            "create",
-            "read",
-            "update",
-            "delete"
-          ],
-          "Staff": [
-            "read"
-          ]
-        },
-        "setting": "private"
+        "setting": "open"
       }
     }
   }

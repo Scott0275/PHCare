@@ -1,0 +1,9 @@
+type Message
+  @model
+  @auth(rules: [{ allow: private, operations: [read, create] }]) {
+  id: ID!
+  type: String! @index(name: "messagesByDate", queryField: "messagesByDate", sortKeyFields: ["createdAt"])
+  sender: String!
+  message: String!
+  createdAt: AWSDateTime!
+}

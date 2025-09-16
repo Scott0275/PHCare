@@ -20,15 +20,23 @@
       "function": {
         "patientsLambda": {
           "deploymentBucketName": "amplify-phcare-test-d97de-deployment",
-          "s3Key": "amplify-builds/patientsLambda-5a3039542b7950724d45-build.zip"
+          "s3Key": "amplify-builds/patientsLambda-6e6633652b624432326d-build.zip"
         }
       },
       "storage": {
         "ehrdocs": {},
-        "patients": {}
+        "patients": {},
+        "chatmessages": {}
       },
       "api": {
-        "patients": {}
+        "patients": {},
+        "chatapp": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d1t6xqfirrlcfd",
+          "type": "cicd"
+        }
       }
     }
   }

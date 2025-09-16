@@ -1,5 +1,33 @@
 {
   "api": {
+    "chatapp": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "phcareaba2983daba2983d"
+        }
+      ],
+      "output": {
+        "authConfig": {
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+              "userPoolConfig": {
+                "userPoolId": "authphcareaba2983daba2983d"
+              }
+            }
+          ],
+          "defaultAuthentication": {
+            "authenticationType": "AWS_IAM"
+          }
+        }
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "AppSync"
+    },
     "patients": {
       "dependsOn": [
         {
@@ -9,27 +37,6 @@
           ],
           "category": "function",
           "resourceName": "patientsLambda"
-        },
-        {
-          "attributes": [
-            "UserPoolId"
-          ],
-          "category": "auth",
-          "resourceName": "phcareaba2983daba2983d"
-        },
-        {
-          "attributes": [
-            "DoctorGroupRole"
-          ],
-          "category": "auth",
-          "resourceName": "userPoolGroups"
-        },
-        {
-          "attributes": [
-            "StaffGroupRole"
-          ],
-          "category": "auth",
-          "resourceName": "userPoolGroups"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -110,6 +117,13 @@
       "service": "Lambda"
     }
   },
+  "hosting": {
+    "amplifyhosting": {
+      "lastPushTimeStamp": "2025-09-16T22:50:27.832Z",
+      "service": "amplifyhosting",
+      "type": "cicd"
+    }
+  },
   "parameters": {
     "AMPLIFY_function_patientsLambda_deploymentBucketName": {
       "usedBy": [
@@ -126,9 +140,29 @@
           "resourceName": "patientsLambda"
         }
       ]
+    },
+    "AMPLIFY_hosting_amplifyhosting_appId": {
+      "usedBy": [
+        {
+          "category": "hosting",
+          "resourceName": "amplifyhosting"
+        }
+      ]
+    },
+    "AMPLIFY_hosting_amplifyhosting_type": {
+      "usedBy": [
+        {
+          "category": "hosting",
+          "resourceName": "amplifyhosting"
+        }
+      ]
     }
   },
   "storage": {
+    "chatmessages": {
+      "providerPlugin": "awscloudformation",
+      "service": "DynamoDB"
+    },
     "ehrdocs": {
       "dependsOn": [
         {

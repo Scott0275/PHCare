@@ -1,0 +1,14 @@
+{
+  "resourceName": "chatmessages",
+  "tableName": "chatmessages",
+  "partitionKey": {
+    "fieldName": "message",
+    "fieldType": "string"
+  },
+  "sortKey": {
+    "fieldName": "timestamp",
+    "fieldType": "number"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}
