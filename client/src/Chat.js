@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { API, graphqlOperation } from 'aws-amplify';
+import { graphql } from 'aws-amplify/api';
 import { createMessage } from './graphql/mutations';
 import { onCreateMessage } from './graphql/subscriptions';
 import { messagesByDate } from './graphql/queries';
@@ -14,12 +14,15 @@ const Chat = ({ user }) => {
     const fetchMessages = async () => {
       try {
         // Use the new GSI query to fetch messages sorted by the database
-        const messagesData = await API.graphql(graphqlOperation(messagesByDate, {
+        const result = await graphql({
+          query: messagesByDate,
+          variables: {
             type: 'Message',
             sortDirection: 'ASC'
-        }));
+          }
+        });
         // No more client-side sorting needed!
-        const sortedMessages = messagesData.data.messagesByDate.items;
+        const sortedMessages = result.data.messagesByDate.items;
         setMessages(sortedMessages || []);
       } catch (error) {
         console.error("Error fetching messages:", error);
@@ -29,9 +32,9 @@ const Chat = ({ user }) => {
     fetchMessages();
 
     // Subscribe to new messages
-    const subscription = API.graphql(
-      graphqlOperation(onCreateMessage)
-    ).subscribe({
+    const subscription = graphql({
+      query: onCreateMessage
+    }).subscribe({
       next: ({ provider, value }) => {
         const newMessage = value.data.onCreateMessage;
         setMessages((prevMessages) => [...prevMessages, newMessage]);
@@ -55,7 +58,10 @@ const Chat = ({ user }) => {
         message: input,
         type: 'Message' // Add the GSI partition key
       };
-      await API.graphql(graphqlOperation(createMessage, { input: messageDetails }));
+      await graphql({
+        query: createMessage,
+        variables: { input: messageDetails }
+      });
       setInput("");
     }
   };
