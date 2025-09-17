@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { graphql } from 'aws-amplify/api';
+import { graphql } from '@aws-amplify/api/graphql';
 import { createMessage } from './graphql/mutations';
 import { onCreateMessage } from './graphql/subscriptions';
 import { messagesByDate } from './graphql/queries';
