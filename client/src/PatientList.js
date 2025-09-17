@@ -44,8 +44,13 @@ const PatientList = () => {
         setError(null);
       } catch (err) {
         console.error("Error fetching patients:", err);
-        // Provide more specific feedback if possible
-        setError(`Failed to fetch patients. Status: ${err.response?.statusCode || 'Unknown'}`);
+        let errorMessage = "Failed to fetch patients.";
+        if (err.response) {
+          errorMessage = `Failed to fetch patients. Status: ${err.response.statusCode}`;
+        } else if (err.message) {
+          errorMessage = err.message;
+        }
+        setError(errorMessage);
       } finally {
         setLoading(false);
       }
@@ -64,9 +69,14 @@ const PatientList = () => {
         setPatients(prevPatients => prevPatients.filter(p => p.PatientID !== patientId));
         alert('Patient deleted successfully.');
       } catch (err) {
-        console.error('Error deleting patient:', err.response || err);
-        const errorBody = await err.response?.body.json().catch(() => ({ error: "Could not parse error response." }));
-        const errorMessage = errorBody?.error || `Request failed with status ${err.response?.statusCode || 'Unknown'}`;
+        console.error("Error deleting patient:", err);
+        let errorMessage = "An unknown error occurred.";
+        if (err.response) {
+          const errorBody = await err.response.body.json();
+          errorMessage = errorBody.error || `Request failed with status ${err.response.statusCode}`;
+        } else if (err.message) {
+          errorMessage = err.message;
+        }
         alert(`Failed to delete patient: ${errorMessage}`);
       }
     }
@@ -104,9 +114,14 @@ const PatientList = () => {
       alert('Patient updated successfully.');
       setEditingPatient(null);
     } catch (err) {
-      console.error('Error updating patient:', err.response || err);
-      const errorBody = await err.response?.body.json().catch(() => ({ error: "Could not parse error response." }));
-      const errorMessage = errorBody?.error || `Request failed with status ${err.response?.statusCode || 'Unknown'}`;
+      console.error("Error updating patient:", err);
+      let errorMessage = "An unknown error occurred.";
+      if (err.response) {
+        const errorBody = await err.response.body.json();
+        errorMessage = errorBody.error || `Request failed with status ${err.response.statusCode}`;
+      } else if (err.message) {
+        errorMessage = err.message;
+      }
       alert(`Failed to update patient: ${errorMessage}`);
     }
   };
@@ -148,9 +163,14 @@ const PatientList = () => {
       alert(`File uploaded successfully! S3 Key: ${key}`);
       setSelectedFile(null); // Reset file input
     } catch (err) {
-      console.error("Error uploading file:", err.response || err);
-      const errorBody = await err.response?.body.json().catch(() => ({ error: "Could not parse error response." }));
-      const errorMessage = errorBody?.error || `Request failed with status ${err.response?.statusCode || 'Unknown'}`;
+      console.error("Error uploading file:", err);
+      let errorMessage = "An unknown error occurred.";
+      if (err.response) {
+        const errorBody = await err.response.body.json();
+        errorMessage = errorBody.error || `Request failed with status ${err.response.statusCode}`;
+      } else if (err.message) {
+        errorMessage = err.message;
+      }
       alert(`File upload failed: ${errorMessage}`);
     } finally {
       setIsUploading(false);
