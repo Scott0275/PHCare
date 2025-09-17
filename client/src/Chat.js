@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
-import { graphql } from 'aws-amplify/api';
+import { generateClient } from 'aws-amplify/api';
 import { createMessage } from './graphql/mutations';
 import { onCreateMessage } from './graphql/subscriptions';
 import { messagesByDate } from './graphql/queries';
+
+const client = generateClient();
 
 const Chat = ({ user }) => {
   const [messages, setMessages] = useState([]);
@@ -14,7 +16,7 @@ const Chat = ({ user }) => {
     const fetchMessages = async () => {
       try {
         // Use the new GSI query to fetch messages sorted by the database
-        const result = await graphql({
+        const result = await client.graphql({
           query: messagesByDate,
           variables: {
             type: 'Message',
@@ -32,7 +34,7 @@ const Chat = ({ user }) => {
     fetchMessages();
 
     // Subscribe to new messages
-    const subscription = graphql({
+    const subscription = client.graphql({
       query: onCreateMessage
     }).subscribe({
       next: ({ provider, value }) => {
@@ -58,7 +60,7 @@ const Chat = ({ user }) => {
         message: input,
         type: 'Message' // Add the GSI partition key
       };
-      await graphql({
+      await client.graphql({
         query: createMessage,
         variables: { input: messageDetails }
       });

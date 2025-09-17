@@ -28,13 +28,13 @@ The goal: explore modern cloud tooling, practice DevOps workflows, and ship a wo
 - **Patient UI:** Created a React frontend with forms and lists to add, view, search, edit, and delete patient records.
 - **Real-Time Chat:** Implemented a doctor-staff chat feature using GraphQL Subscriptions for real-time messaging.
 - **Secure Document Uploads:** Added functionality for doctors to upload patient EHR documents directly and securely to S3 using pre-signed URLs.
-- **CI/CD:** Set up a continuous deployment pipeline with Amplify Hosting.
+- **CI/CD:** Setting up a continuous deployment pipeline with Amplify Hosting.
 
 ---
 
 ## ✅ Project Status
-- The core MVP is feature-complete and deployed.
-- Next steps could include displaying uploaded documents, adding pagination, or refining the UI.
+- The core MVP is feature-complete.
+- We are in the final stages of debugging the CI/CD pipeline to achieve a successful deployment.
 ---
 
 ## 🚀 How to Run Locally
