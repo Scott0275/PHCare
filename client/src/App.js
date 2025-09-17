@@ -43,9 +43,14 @@ function App({ signOut, user }) {
       // Reset form after successful submission
       setPatientData({ PatientID: '', FirstName: '', LastName: '' });
     } catch (err) {
-      console.error("Error adding patient:", err.response || err);
-      const errorBody = await err.response?.body.json().catch(() => ({ error: "Could not parse error response." }));
-      const errorMessage = errorBody?.error || `Request failed with status ${err.response?.statusCode || 'Unknown'}`;
+      console.error("Error adding patient:", err);
+      let errorMessage = "An unknown error occurred.";
+      if (err.response) {
+        const errorBody = await err.response.body.json();
+        errorMessage = errorBody.error || `Request failed with status ${err.response.statusCode}`;
+      } else if (err.message) {
+        errorMessage = err.message;
+      }
       alert(`Failed to add patient: ${errorMessage}`);
     }
   };
