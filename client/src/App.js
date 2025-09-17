@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { post } from 'aws-amplify/api';
 import { withAuthenticator } from "@aws-amplify/ui-react";
 import Chat from "./Chat";
-import PatientList from './PatientList'; // Assuming you have an amplifyconfiguration.json file
+import PatientList from './PatientList';
 function App({ signOut, user }) {
   // State for the form inputs
   const [patientData, setPatientData] = useState({
@@ -43,8 +43,10 @@ function App({ signOut, user }) {
       // Reset form after successful submission
       setPatientData({ PatientID: '', FirstName: '', LastName: '' });
     } catch (err) {
-      console.error("Error adding patient:", err);
-      alert("Failed to add patient — check console.");
+      console.error("Error adding patient:", err.response || err);
+      const errorBody = await err.response?.body.json().catch(() => ({ error: "Could not parse error response." }));
+      const errorMessage = errorBody?.error || `Request failed with status ${err.response?.statusCode || 'Unknown'}`;
+      alert(`Failed to add patient: ${errorMessage}`);
     }
   };
 

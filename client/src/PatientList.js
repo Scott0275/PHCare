@@ -64,9 +64,10 @@ const PatientList = () => {
         setPatients(prevPatients => prevPatients.filter(p => p.PatientID !== patientId));
         alert('Patient deleted successfully.');
       } catch (err) {
-        console.error('Error deleting patient:', err);
-        const errorBody = await err.response?.body.json();
-        alert(`Failed to delete patient: ${errorBody?.error || 'You may not have permission.'}`);
+        console.error('Error deleting patient:', err.response || err);
+        const errorBody = await err.response?.body.json().catch(() => ({ error: "Could not parse error response." }));
+        const errorMessage = errorBody?.error || `Request failed with status ${err.response?.statusCode || 'Unknown'}`;
+        alert(`Failed to delete patient: ${errorMessage}`);
       }
     }
   };
@@ -103,9 +104,10 @@ const PatientList = () => {
       alert('Patient updated successfully.');
       setEditingPatient(null);
     } catch (err) {
-      console.error('Error updating patient:', err);
-      const errorBody = await err.response?.body.json();
-      alert(`Failed to update patient: ${errorBody?.error || 'You may not have permission.'}`);
+      console.error('Error updating patient:', err.response || err);
+      const errorBody = await err.response?.body.json().catch(() => ({ error: "Could not parse error response." }));
+      const errorMessage = errorBody?.error || `Request failed with status ${err.response?.statusCode || 'Unknown'}`;
+      alert(`Failed to update patient: ${errorMessage}`);
     }
   };
 
@@ -146,8 +148,10 @@ const PatientList = () => {
       alert(`File uploaded successfully! S3 Key: ${key}`);
       setSelectedFile(null); // Reset file input
     } catch (err) {
-      console.error("Error uploading file:", err);
-      alert("File upload failed. You may not have permission.");
+      console.error("Error uploading file:", err.response || err);
+      const errorBody = await err.response?.body.json().catch(() => ({ error: "Could not parse error response." }));
+      const errorMessage = errorBody?.error || `Request failed with status ${err.response?.statusCode || 'Unknown'}`;
+      alert(`File upload failed: ${errorMessage}`);
     } finally {
       setIsUploading(false);
     }

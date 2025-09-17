@@ -12,7 +12,7 @@ exports.handler = async (event) => {
   const method = event.httpMethod;
   const pathParams = event.pathParameters || {};
   const queryStringParameters = event.queryStringParameters || {};
-  const body = event.body ? JSON.parse(event.body) : {};
+  const body = event.body && event.body.trim() !== '' ? JSON.parse(event.body) : {};
   const userGroups =
     event.requestContext.authorizer?.claims["cognito:groups"] || [];
 
