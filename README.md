@@ -48,11 +48,12 @@ The goal: explore modern cloud tooling, practice DevOps workflows, and ship a wo
    ```bash
    git clone https://github.com/Scott0275/PHCare.git
    cd PHCare
-````
+   ```
 
 2. Install dependencies:
 
    ```bash
+   cd client
    npm install
    ```
 
@@ -62,7 +63,7 @@ The goal: explore modern cloud tooling, practice DevOps workflows, and ship a wo
    npm start
    ```
 
-4. App runs at `http://localhost:3000/`
+   App runs at `http://localhost:3000/`
 
 ---
 

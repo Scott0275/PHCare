@@ -15,6 +15,7 @@ const PatientList = () => {
   const [isUploading, setIsUploading] = useState(false);
 
 
+  // Effect for debouncing the search term to avoid excessive API calls
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedSearchTerm(searchTerm);
@@ -201,10 +202,27 @@ const PatientList = () => {
               </button>
             </div>
             <hr style={{ margin: '1rem 0' }} />
-              <button type="button" onClick={() => setEditingPatient(null)}>Cancel</button>
+            <button type="button" onClick={() => setEditingPatient(null)}>Cancel</button>
           </div>
         </div>
       )}
     </div>
   );
 };
+
+const modalStyles = {
+  overlay: {
+    position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.75)',
+    display: 'flex', alignItems: 'center', justifyContent: 'center',
+    zIndex: 1000
+  },
+  content: {
+    background: '#fff',
+    padding: '2rem',
+    borderRadius: '5px',
+    color: '#000'
+  }
+};
+
+export default PatientList;
