@@ -23,23 +23,18 @@ The goal: explore modern cloud tooling, practice DevOps workflows, and ship a wo
 - Deployed to **test environment** before syncing with dev  
 - Confirmed DynamoDB + S3 live in AWS Console  
 
-## 🏥 Day 3: Patient API Integration
-- Added **REST API** via Amplify → API Gateway + Lambda.  
-- Created endpoint `/patients` backed by **patientsLambda** function.  
-- Connected Lambda to DynamoDB for patient CRUD operations.  
-- Enforced role-based access:  
-  - Doctor → **CRUD**  
-  - Staff → **Read-only**  
-- Fixed frontend API mismatch (`patient-api` → `patients`).  
-- Successfully tested **Add Patient** flow from React frontend → API Gateway → Lambda → DynamoDB. 🎉  
+## 🏥 Day 3 & Beyond: Full Application Build
+- **Patient API:** Built a secure REST API for full patient CRUD, with role-based access enforced in the Lambda backend.
+- **Patient UI:** Created a React frontend with forms and lists to add, view, search, edit, and delete patient records.
+- **Real-Time Chat:** Implemented a doctor-staff chat feature using GraphQL Subscriptions for real-time messaging.
+- **Secure Document Uploads:** Added functionality for doctors to upload patient EHR documents directly and securely to S3 using pre-signed URLs.
+- **CI/CD:** Set up a continuous deployment pipeline with Amplify Hosting.
 
 ---
 
-## 🔮 Next Steps
-- Test full CRUD (Read, Update, Delete) flows for patients.  
-- Add **WebSocket API** for doctor–staff chat.  
-- Connect frontend with **search functionality**.  
-- Deploy demo app to Amplify Hosting.  
+## ✅ Project Status
+- The core MVP is feature-complete and deployed.
+- Next steps could include displaying uploaded documents, adding pagination, or refining the UI.
 ---
 
 ## 🚀 How to Run Locally
