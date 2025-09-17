@@ -60,11 +60,16 @@ const Chat = ({ user }) => {
         message: input,
         type: 'Message' // Add the GSI partition key
       };
-      await client.graphql({
-        query: createMessage,
-        variables: { input: messageDetails }
-      });
-      setInput("");
+      try {
+        await client.graphql({
+          query: createMessage,
+          variables: { input: messageDetails }
+        });
+        setInput("");
+      } catch (error) {
+        console.error("Error sending message:", error);
+        alert("Failed to send message. Check console for details.");
+      }
     }
   };
 

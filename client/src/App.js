@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { post } from 'aws-amplify/api';
 import { withAuthenticator } from "@aws-amplify/ui-react";
 import Chat from "./Chat";
-import PatientList from './PatientList';
-
+import PatientList from './PatientList'; // Assuming you have an amplifyconfiguration.json file
 function App({ signOut, user }) {
   // State for the form inputs
   const [patientData, setPatientData] = useState({

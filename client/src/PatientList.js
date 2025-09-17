@@ -44,7 +44,8 @@ const PatientList = () => {
         setError(null);
       } catch (err) {
         console.error("Error fetching patients:", err);
-        setError("Failed to fetch patients.");
+        // Provide more specific feedback if possible
+        setError(`Failed to fetch patients. Status: ${err.response?.statusCode || 'Unknown'}`);
       } finally {
         setLoading(false);
       }

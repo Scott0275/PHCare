@@ -23,6 +23,7 @@ exports.handler = async (event) => {
     const isWriteMethod = ["POST", "PUT", "DELETE"].includes(method);
 
     if (isWriteMethod && !isDoctor) {
+      console.log(`[SECURITY] Denied ${method} request from user. Not in 'Doctor' group. Groups: ${JSON.stringify(userGroups)}`);
       return response(403, {
         error: "Forbidden: You do not have permission to perform this action.",
       });
